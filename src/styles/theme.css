@@ -40,6 +40,7 @@
 }
 
 .tweakpine-panel-inner {
+  width: 280px;
   background: var(--tweak-glass-bg);
   border: 1px solid var(--tweak-border);
   border-radius: 14px;
@@ -50,6 +51,7 @@
   transform-origin: top right;
   max-height: calc(100vh - 80px);
   overflow-y: auto;
+  box-shadow: var(--tweak-shadow);
 }
 
 

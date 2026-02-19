@@ -37,10 +37,14 @@ export class Renderer {
     this.root = document.createElement('div');
     this.root.className = 'tweakpine-root';
 
-    // Create panel
+    // Create positioning panel
     this.panel = document.createElement('div');
     this.panel.className = 'tweakpine-panel';
     this.panel.dataset.position = this.position;
+
+    // Create panel inner (glassmorphic wrapper) - THIS WAS MISSING!
+    const panelInner = document.createElement('div');
+    panelInner.className = 'tweakpine-panel-inner';
 
     // Get panel config
     const panelConfig = TweakPineStore.getPanel(this.panelId);
@@ -69,7 +73,9 @@ export class Renderer {
     // Render controls
     this.renderControls(panelConfig.controls, this.rootFolder.getInner());
 
-    this.panel.appendChild(this.rootFolder.getElement());
+    // Correct structure: panel > panel-inner > root-folder
+    panelInner.appendChild(this.rootFolder.getElement());
+    this.panel.appendChild(panelInner);
     this.root.appendChild(this.panel);
     document.body.appendChild(this.root);
 
