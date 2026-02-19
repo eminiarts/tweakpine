@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TweakPine - Vanilla JS Example</title>
+  <link rel="stylesheet" href="../dist/styles.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, sans-serif;
+    }
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background: #ff6b6b;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transition: all 0.1s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+
+  <script type="module">
+    import { TweakPine } from '../dist/index.js';
+
+    const panel = TweakPine.create('Box Controls', {
+      transform: {
+        rotation: [0, 0, 360],
+        scale: [1, 0.5, 2, 0.1],
+        _collapsed: false
+      },
+      appearance: {
+        opacity: [1, 0, 1, 0.05],
+        color: '#ff6b6b',
+        borderRadius: [20, 0, 50],
+        _collapsed: false
+      },
+      animation: {
+        type: 'spring',
+        visualDuration: 0.3,
+        bounce: 0.2
+      },
+      reset: {
+        type: 'action',
+        label: 'Reset Transform'
+      }
+    }, {
+      position: 'top-right'
+    });
+
+    const box = document.querySelector('.box');
+
+    function update() {
+      const { rotation, scale } = panel.values.transform;
+      const { opacity, color, borderRadius } = panel.values.appearance;
+
+      box.style.transform = `rotate(${rotation}deg) scale(${scale})`;
+      box.style.opacity = opacity;
+      box.style.backgroundColor = color;
+      box.style.borderRadius = `${borderRadius}px`;
+    }
+
+    panel.on('change', update);
+    panel.on('action', (name) => {
+      if (name === 'reset') {
+        // Would need to trigger value updates here
+        console.log('Reset clicked!');
+      }
+    });
+
+    update();
+  </script>
+</body>
+</html>

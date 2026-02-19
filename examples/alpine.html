@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TweakPine - Alpine JS Example</title>
+  <link rel="stylesheet" href="../dist/styles.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, sans-serif;
+    }
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background: #ff6b6b;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transition: all 0.1s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <div x-data="tweakpine('Box Controls', {
+    transform: {
+      rotation: [0, 0, 360],
+      scale: [1, 0.5, 2, 0.1],
+      _collapsed: false
+    },
+    appearance: {
+      opacity: [1, 0, 1, 0.05],
+      color: '#ff6b6b',
+      borderRadius: [20, 0, 50],
+      _collapsed: false
+    }
+  })">
+    <div 
+      class="box"
+      :style="{
+        transform: `rotate(${$tweakpine.transform.rotation}deg) scale(${$tweakpine.transform.scale})`,
+        opacity: $tweakpine.appearance.opacity,
+        backgroundColor: $tweakpine.appearance.color,
+        borderRadius: $tweakpine.appearance.borderRadius + 'px'
+      }"
+    ></div>
+  </div>
+
+  <script type="module">
+    import Alpine from 'https://cdn.jsdelivr.net/npm/alpinejs@3/dist/module.esm.js';
+    import { TweakPinePlugin } from '../dist/index.js';
+
+    Alpine.plugin(TweakPinePlugin);
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+</body>
+</html>
