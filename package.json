@@ -1,6 +1,6 @@
 {
   "name": "tweakpine",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Real-time parameter tweaking for AlpineJS & Vanilla JS apps",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -57,6 +57,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/tweakpine"
+    "url": "git+https://github.com/eminiarts/tweakpine.git"
+  },
+  "homepage": "https://github.com/eminiarts/tweakpine#readme",
+  "bugs": {
+    "url": "https://github.com/eminiarts/tweakpine/issues"
   }
 }
