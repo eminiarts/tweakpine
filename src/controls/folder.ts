@@ -48,7 +48,7 @@ export class Folder {
     if (this.isRoot) {
       // Root panel icon
       const icon = this.createPanelIcon();
-      icon.className = 'tweakpine-panel-icon';
+      icon.setAttribute('class', 'tweakpine-panel-icon');
       headerTop.appendChild(icon);
     } else {
       // Chevron for folders
